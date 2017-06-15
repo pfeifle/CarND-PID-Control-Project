@@ -1,0 +1,10 @@
+The final parameters for P, I and D were chosen by manual testing.
+In order to speed up testing the parameters were passed via command line parameter to the main function of ./pid. As a starting point for optimization the values proposed by udacity were used, i.e I = -0.25, I = 0 and P = -0.75  (cf. https://www.youtube.com/watch?v=YamBuzDjrs8&feature=youtu.be&utm_medium=email&utm_campaign=2017-06-05_carnd_term2_annoucements&utm_source=blueshift&utm_content=2017-06-01_carnd_announcements&bsft_eid=5d3d51b3-1acc-41d3-9f6d-cadc1f93a952&bsft_clkid=b6ed7c07-0c7c-408b-9842-590e3eb71e47&bsft_uid=93836ca6-af35-4cc9-81f1-75c283e456d0&bsft_mid=404b8069-36d0-4a29-b440-eec11eb75a52).
+
+After several changes the best found setting was D = -0.15, I = -0.0005 and P = -0.7. These final values were then entered into the main function so that there is no need to pass them any longer as runtime parameters to ./pid.
+
+In general, the P = proportional part is what you would naturally start with. the steering is the stronger the further the car is away from the desired trajectory. Unfortunately, this P value then leads to overshooting, i.e. the car continues to drive further than the desired trajectory and consequently to oscillation. To compensate for this we integrated the I (integral) and D (differntial) part. The D part is more the "forward-looking" compensation whereas the I part is the "backward-looking" compensation. The I part can be used to smoothen the trajectory, whereas the D part helps to get around curves properly.
+
+As said the parameters where chosen experimentally until we could drove decently with a throttle of 0.3.
+
+
